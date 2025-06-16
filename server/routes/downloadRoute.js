@@ -20,7 +20,7 @@ router.get("/download/:uuid", async (req, res) => {
     // Create forced download URL
     const downloadUrl = file.secure_url.replace(
       "/upload/",
-      "/upload/fl_attachment/"
+      `/upload/fl_attachment:${encodeURIComponent(file.originalname)}/`
     );
 
     // Optional: cache headers
