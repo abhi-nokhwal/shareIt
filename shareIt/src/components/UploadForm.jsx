@@ -46,7 +46,8 @@ const UploadForm = () => {
       );
       setPreviewLink(res.data.previewLink);
       setDownloadLink(res.data.downloadLink);
-      setShareLink(`${window.location.origin}/download/${res.data.id}`);
+      const FRONTEND_BASE_URL = "https://your-frontend.vercel.app";
+      setShareLink(`${FRONTEND_BASE_URL}/download/${res.data.id}`);
       setMessage("✅ File uploaded successfully!");
     } catch (err) {
       console.error(err);
