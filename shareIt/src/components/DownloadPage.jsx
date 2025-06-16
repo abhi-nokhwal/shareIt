@@ -20,7 +20,9 @@ const DownloadPage = () => {
 
     const fetchFile = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/files/${uuid}`);
+        const res = await axios.get(
+          `https://shareit-1-ppkm.onrender.com/api/files/${uuid}`
+        );
         setFileData(res.data);
       } catch (err) {
         setError("⚠️ File not found or expired.");

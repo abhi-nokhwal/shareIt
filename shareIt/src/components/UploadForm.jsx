@@ -41,7 +41,7 @@ const UploadForm = () => {
       setShowMailBox(false);
       setMailStatus("");
       const res = await axios.post(
-        "http://localhost:5000/api/upload",
+        "https://shareit-1-ppkm.onrender.com/api/upload",
         formData
       );
       setPreviewLink(res.data.previewLink);
@@ -228,8 +228,7 @@ const UploadForm = () => {
         onClick={toggleDarkMode}
         style={styles.toggleButton}
         aria-label="Toggle dark mode"
-        title="Toggle dark/light mode"
-      >
+        title="Toggle dark/light mode">
         {darkMode ? "☀️" : "🌙"}
       </button>
       <h2 className="upload-heading" style={styles.heading}>
@@ -247,8 +246,7 @@ const UploadForm = () => {
       <button
         onClick={handleUpload}
         style={styles.uploadButton}
-        disabled={loading}
-      >
+        disabled={loading}>
         {loading ? "Uploading..." : "Upload"}
       </button>
 
@@ -259,15 +257,15 @@ const UploadForm = () => {
           <p style={styles.label}>🔍 Preview:</p>
           {file && file.type === "application/pdf" ? (
             <div style={{ color: "#888", marginBottom: "10px" }}>
-              📄 PDF preview not available. Please use the download button below.
+              📄 PDF preview not available. Please use the download button
+              below.
             </div>
           ) : (
             <a
               href={previewLink}
               target="_blank"
               rel="noreferrer"
-              style={styles.link}
-            >
+              style={styles.link}>
               Open File in New Tab
             </a>
           )}
@@ -282,8 +280,7 @@ const UploadForm = () => {
             className="upload-download-btn"
             style={styles.downloadButton}
             target="_blank"
-            rel="noreferrer"
-          >
+            rel="noreferrer">
             Download File
           </a>
         </div>
@@ -299,8 +296,7 @@ const UploadForm = () => {
           <button
             onClick={handleCopy}
             className="upload-copy-btn"
-            style={styles.copyButton}
-          >
+            style={styles.copyButton}>
             📋 Copy Link
           </button>
           <button
@@ -310,8 +306,7 @@ const UploadForm = () => {
               ...styles.copyButton,
               backgroundColor: "#007BFF",
               marginLeft: 8,
-            }}
-          >
+            }}>
             📧 Mail Link
           </button>
           {showMailBox && (
@@ -330,17 +325,19 @@ const UploadForm = () => {
                 e.preventDefault();
                 setMailStatus("Sending...");
                 try {
-                  await axios.post("http://localhost:5000/api/send-link", {
-                    sender: senderEmail,
-                    receiver: receiverEmail,
-                    link: shareLink,
-                  });
+                  await axios.post(
+                    "https://shareit-1-ppkm.onrender.com/api/send-link",
+                    {
+                      sender: senderEmail,
+                      receiver: receiverEmail,
+                      link: shareLink,
+                    }
+                  );
                   setMailStatus("✅ Email sent!");
                 } catch {
                   setMailStatus("❌ Failed to send email.");
                 }
-              }}
-            >
+              }}>
               <input
                 type="email"
                 placeholder="Your Email"
@@ -375,8 +372,7 @@ const UploadForm = () => {
                   ...styles.copyButton,
                   backgroundColor: "#28a745",
                   marginTop: 0,
-                }}
-              >
+                }}>
                 Send
               </button>
               {mailStatus && (
