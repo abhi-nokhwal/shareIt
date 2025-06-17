@@ -46,7 +46,8 @@ const UploadForm = () => {
       );
       setPreviewLink(res.data.previewLink);
       setDownloadLink(res.data.downloadLink);
-      const FRONTEND_BASE_URL = "https://your-frontend.vercel.app";
+      const FRONTEND_BASE_URL = "https://share-it-mu.vercel.app";
+
       setShareLink(`${FRONTEND_BASE_URL}/download/${res.data.id}`);
       setMessage("✅ File uploaded successfully!");
     } catch (err) {
@@ -235,7 +236,6 @@ const UploadForm = () => {
       <h2 className="upload-heading" style={styles.heading}>
         📤 Upload a File
       </h2>
-
       <input
         type="file"
         accept=".pdf,image/*"
@@ -243,16 +243,13 @@ const UploadForm = () => {
         style={styles.fileInput}
         aria-label="Select file"
       />
-
       <button
         onClick={handleUpload}
         style={styles.uploadButton}
         disabled={loading}>
         {loading ? "Uploading..." : "Upload"}
       </button>
-
       {message && <p style={styles.message}>{message}</p>}
-
       {previewLink && (
         <div className="upload-section" style={styles.section}>
           <p style={styles.label}>🔍 Preview:</p>
@@ -272,7 +269,6 @@ const UploadForm = () => {
           )}
         </div>
       )}
-
       {downloadLink && (
         <div className="upload-section" style={styles.section}>
           <p style={styles.label}>⬇️ Direct Download:</p>
@@ -286,7 +282,6 @@ const UploadForm = () => {
           </a>
         </div>
       )}
-
       {shareLink && (
         <div className="upload-section" style={styles.section}>
           <p style={styles.label}>🔗 Shareable Page:</p>

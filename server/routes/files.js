@@ -11,13 +11,16 @@ router.get("/files/:uuid", async (req, res) => {
       return res.status(404).json({ error: "File not found or has expired." });
     }
 
+    // Construct the download link exactly as in upload route
+    const downloadLink = file.secure_url.replace(
+      "/upload/",
+      `/upload/fl_attachment:${encodeURIComponent(file.originalname)}/`
+    );
+
     return res.status(200).json({
-      filename: file.filename,
-      sizeInBytes: file.sizeInBytes,
+      ...file.toObject(),
+      downloadLink,
       previewLink: file.secure_url,
-      downloadLink: `${req.protocol}://${req.get("host")}/download/${
-        file.uuid
-      }`,
     });
   } catch (err) {
     console.error("Error fetching file metadata:", err);
