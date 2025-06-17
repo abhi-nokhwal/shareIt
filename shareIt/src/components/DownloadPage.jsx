@@ -210,7 +210,7 @@ const DownloadPage = () => {
         )}
 
         <a
-          href={fileData.downloadLink}
+          href={`https://shareit-1-ppkm.onrender.com/download/${uuid}`}
           target="_blank"
           rel="noreferrer"
           className="download-btn"
